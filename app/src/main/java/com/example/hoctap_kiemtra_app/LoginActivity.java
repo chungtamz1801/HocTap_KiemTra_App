@@ -40,47 +40,55 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void checkUser(){
-        String userName = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-        db.collection("students").whereEqualTo("email",userName).whereEqualTo("password",password).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot document : task.getResult()){
-                        User user = document.toObject(User.class);
-                        if(user!=null){
-                            Intent intent = new Intent(LoginActivity.this,StudentHomeActivity.class);
-                            startActivity(intent);
+    private void checkUser() {
+        String userName = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+
+        if (userName.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //  Check STUDENT
+        db.collection("students")
+                .whereEqualTo("email", userName)
+                .whereEqualTo("password", password)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().isEmpty()) {
+                            // Đăng nhập sinh viên
+                            startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
+                            finish();
+                        } else {
+                            // Không phải student → check lecturer
+                            checkLecturer(userName, password);
                         }
-
+                    } else {
+                        Toast.makeText(this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else{
-                    Log.w("Tag2","Error:"+task.getException());
-                }
-            }
-        });
-        db.collection("lecturers").whereEqualTo("email",userName).whereEqualTo("password",password).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for(QueryDocumentSnapshot document : task.getResult()){
-                        User user = document.toObject(User.class);
-                        if(user!=null){
-                            Intent intent = new Intent(LoginActivity.this,LecturerHomeActivity.class);
-                            startActivity(intent);
-                        }
-
-                    }
-                }
-                else{
-                    Log.w("Tag2","Error:"+task.getException());
-                }
-            }
-        });
-        Toast.makeText(this,"Đăng nhâp lỗi!!!",Toast.LENGTH_SHORT).show();
-
+                });
     }
+
+    private void checkLecturer(String email, String password) {
+        db.collection("lecturers")
+                .whereEqualTo("email", email)
+                .whereEqualTo("password", password)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().isEmpty()) {
+                            //Đăng nhập giảng viên
+                            startActivity(new Intent(LoginActivity.this, LecturerHomeActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
 }
