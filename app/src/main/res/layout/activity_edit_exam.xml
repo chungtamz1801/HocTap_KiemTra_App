@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etEditExamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên bộ đề"/>
+
+    <EditText
+        android:id="@+id/etEditExamTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Thời gian (phút)"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etEditExamScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Điểm tổng"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btnSaveExam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu"/>
+
+</LinearLayout>
