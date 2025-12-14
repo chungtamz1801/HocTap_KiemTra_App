@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Tiêu đề bài học -->
+        <TextView
+            android:id="@+id/tvLessonTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiêu đề bài học"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:lineSpacingExtra="2dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Thông tin chi tiết -->
+        <TextView
+            android:id="@+id/tvLessonInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thông tin bài học"
+            android:textSize="13sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Đường kẻ phân cách -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginVertical="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_compass"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tvLessonProgress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quá trình: 0/12"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"/>
+
+            <!-- Icon mũi tên -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_more"
+                android:rotation="270"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
