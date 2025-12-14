@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.hoctap_kiemtra_app.R;
 import com.example.chatapp.adapter.QuestionAdapter;
 import com.google.firebase.firestore.FirebaseFirestore;
 

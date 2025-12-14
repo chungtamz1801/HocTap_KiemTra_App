@@ -18,7 +18,7 @@ import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.example.hoctap_kiemtra_app.R;
 public class ExamListActivity extends AppCompatActivity implements ExamAdapter.OnExamClickListener {
 
     private RecyclerView rvExams;

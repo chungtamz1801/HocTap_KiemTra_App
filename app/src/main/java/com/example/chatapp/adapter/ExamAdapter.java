@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chatapp.R;
+import com.example.hoctap_kiemtra_app.R;
 import com.example.chatapp.model.Exam;
 import com.google.firebase.firestore.FirebaseFirestore;
 

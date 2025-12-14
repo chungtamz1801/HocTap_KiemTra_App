@@ -14,7 +14,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-
+import com.example.hoctap_kiemtra_app.R;
 public class QuestionManageActivity extends AppCompatActivity
         implements QManageAdapter.OnActionListener {
 

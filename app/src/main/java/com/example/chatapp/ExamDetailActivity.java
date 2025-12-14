@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.example.hoctap_kiemtra_app.R;
 public class ExamDetailActivity extends AppCompatActivity implements QuestionAdapterB.OnQuestionActionListener {
 
     private TextView tvExamName;

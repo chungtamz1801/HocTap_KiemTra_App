@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapp.Question;
-import com.example.chatapp.R;
+import com.example.hoctap_kiemtra_app.R;
 
 import java.util.List;
 

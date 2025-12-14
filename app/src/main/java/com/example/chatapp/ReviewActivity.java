@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.chatapp.adapter.QuestionAdapter;
 
 import java.util.ArrayList;
-
+import com.example.hoctap_kiemtra_app.R;
 public class ReviewActivity extends AppCompatActivity {
 
     @Override

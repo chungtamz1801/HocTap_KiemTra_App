@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import com.example.hoctap_kiemtra_app.R;
 public class QuestionEditActivity extends AppCompatActivity {
 
     private EditText etContent, etA, etB, etC, etD;

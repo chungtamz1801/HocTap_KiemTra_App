@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.example.hoctap_kiemtra_app.R;
 public class LoginActivity extends AppCompatActivity {
 
     EditText etEmail, etPassword;

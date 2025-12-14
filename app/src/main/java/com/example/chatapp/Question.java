@@ -2,7 +2,7 @@ package com.example.chatapp;
 
 import com.google.firebase.firestore.Exclude;
 import java.util.Map;
-
+import com.example.hoctap_kiemtra_app.R;
 public class Question {
     private String id;
     private String content; // Nội dung câu hỏi
