@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etContent"
+            android:hint="Nội dung câu hỏi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etA"
+            android:hint="Đáp án A"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etB"
+            android:hint="Đáp án B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etC"
+            android:hint="Đáp án C"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etD"
+            android:hint="Đáp án D"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:id="@+id/rgCorrect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/rbA"
+                android:text="A"/>
+
+            <RadioButton
+                android:id="@+id/rbB"
+                android:text="B"
+                android:layout_marginStart="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rbC"
+                android:text="C"
+                android:layout_marginStart="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rbD"
+                android:text="D"
+                android:layout_marginStart="20dp"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:text="Thêm câu hỏi"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</ScrollView>

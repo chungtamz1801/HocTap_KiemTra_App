@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etQContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nội dung câu hỏi"/>
+
+        <EditText
+            android:id="@+id/etA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đáp án A"/>
+
+        <EditText
+            android:id="@+id/etB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đáp án B"/>
+
+        <EditText
+            android:id="@+id/etC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đáp án C"/>
+
+        <EditText
+            android:id="@+id/etD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đáp án D"/>
+
+        <Spinner
+            android:id="@+id/spCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</ScrollView>
