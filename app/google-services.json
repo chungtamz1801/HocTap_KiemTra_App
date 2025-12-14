@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1008017505960",
+    "project_id": "hoctapapp-1bcad",
+    "storage_bucket": "hoctapapp-1bcad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008017505960:android:0c3af396068b48f7524c9d",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_Wanik_cNACaxCLfJApV7IuQCAqiKWVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008017505960:android:4716bc4f5ae85b22524c9d",
+        "android_client_info": {
+          "package_name": "com.example.hoctap_kiemtra_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_Wanik_cNACaxCLfJApV7IuQCAqiKWVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
