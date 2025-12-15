@@ -1,34 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="24dp"
+    android:background="#FFF8E1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <EditText
-        android:id="@+id/etEmail"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
+    <!-- Logo / Tiêu đề -->
+    <TextView
+        android:text="HỌC TẬP MÁC – LÊNIN"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#B71C1C"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:text="Đăng nhập hệ thống học tập"
+        android:textSize="14sp"
+        android:textColor="#6D4C41"
+        android:layout_marginBottom="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:hint="Mật khẩu"
-        android:inputType="textPassword"
+    <!-- Khung đăng nhập -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="#FFFFFF"
+        android:elevation="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" />
+        android:layout_height="wrap_content">
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:hint="Email sinh viên / giảng viên"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@android:drawable/ic_dialog_email"
+            android:drawablePadding="10dp"
+            android:padding="14dp"
+            android:textColor="#212121"
+            android:textColorHint="#9E9E9E"
+            android:background="@android:drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:text="Đăng nhập"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
+        <!-- Mật khẩu -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:drawableStart="@android:drawable/ic_lock_idle_lock"
+            android:drawablePadding="10dp"
+            android:padding="14dp"
+            android:textColor="#212121"
+            android:textColorHint="#9E9E9E"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+
+        <!-- Button đăng nhập -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:text="ĐĂNG NHẬP"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#C62828"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+    <!-- Footer -->
+    <TextView
+        android:text="Môn học: Chủ nghĩa Mác – Lênin"
+        android:textSize="12sp"
+        android:textColor="#8D6E63"
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
