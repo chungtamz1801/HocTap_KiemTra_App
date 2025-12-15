@@ -25,7 +25,7 @@ public class StudentScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_score);
 
-        rv = findViewById(R.id.rvStudentScore);
+        rv = findViewById(R.id.rvScoreList);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         db = FirebaseFirestore.getInstance();

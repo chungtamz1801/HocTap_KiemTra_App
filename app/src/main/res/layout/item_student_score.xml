@@ -4,34 +4,61 @@
     android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp">
 
-    <!-- HÀNG TÊN + MÃ SINH VIÊN -->
+    <!-- Tên + MSV -->
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:layout_height="wrap_content">
 
+        <!-- TÊN SINH VIÊN -->
         <TextView
             android:id="@+id/tvStudentName"
             android:text="Nguyễn Thị Linh"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#212121"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+        <!-- MÃ SINH VIÊN -->
         <TextView
-            android:id="@+id/tvIdStudent"
-            android:text="SV008"
+            android:id="@+id/tvStudentId"
+            android:text="Mã SV: SV008"
             android:textSize="13sp"
-            android:textColor="#1976D2"
-            android:textStyle="bold"
+            android:textColor="#757575"
+            android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:text="Điểm: 10"
+        android:textSize="14sp"
+        android:textColor="#1B5E20"
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:text="Thời gian: 00 phút 04 giây"
+        android:textSize="13sp"
+        android:textColor="#616161"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvSubmitTime"
+        android:text="Nộp lúc: --"
+        android:textSize="12sp"
+        android:textColor="#757575"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

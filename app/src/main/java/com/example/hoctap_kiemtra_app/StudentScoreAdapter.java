@@ -66,13 +66,11 @@ public class StudentScoreAdapter extends RecyclerView.Adapter<StudentScoreAdapte
 
         ViewHolder(View v) {
             super(v);
-            tvStudentId = v.findViewById(R.id.tvIdStudent);
+            tvStudentId = v.findViewById(R.id.tvStudentId);
             tvStudentName = v.findViewById(R.id.tvStudentName);
             tvScore = v.findViewById(R.id.tvScore);
             tvTime = v.findViewById(R.id.tvTime);
             tvSubmitTime = v.findViewById(R.id.tvSubmitTime);
         }
     }
-
-
 }

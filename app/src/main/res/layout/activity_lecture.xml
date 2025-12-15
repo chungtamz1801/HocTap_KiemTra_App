@@ -24,6 +24,14 @@
         android:backgroundTint="#3F51B5"
         android:layout_width="220dp"
         android:layout_height="wrap_content"/>
-
+    <Button
+        android:id="@+id/btnScore"
+        android:text="Quản lý điểm thi sinh viên"
+        android:textSize="18sp"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#3F51B5"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
