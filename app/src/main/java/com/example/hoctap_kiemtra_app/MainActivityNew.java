@@ -40,6 +40,8 @@ public class MainActivityNew extends AppCompatActivity {
                 selectedFragment = new ResultsFragment();
             } else if (itemId == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
+            }   else if (itemId == R.id.nav_chats) {
+                selectedFragment = new ChatFragment();
             }
 
             if (selectedFragment != null) {

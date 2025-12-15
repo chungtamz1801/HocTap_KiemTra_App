@@ -1,6 +1,7 @@
 package com.example.hoctap_kiemtra_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -51,9 +52,9 @@ public class ChatActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        MyApplication app = (MyApplication) getApplication();
-        userID = app.getUserID();
-        userName = app.getUserName();
+        SharedPreferences prefs = getSharedPreferences("QUIZ_APP", MODE_PRIVATE);
+        userID = prefs.getString("STUDENT_ID","");
+        userName = prefs.getString("FULLNAME","");
         getWidget();
         bindDataFromIntent();
         setEvent();

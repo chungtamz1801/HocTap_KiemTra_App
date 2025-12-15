@@ -27,7 +27,7 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        /*EdgeToEdge.enable(this);
         setContentView(R.layout.activity_student);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -54,17 +54,17 @@ public class StudentActivity extends AppCompatActivity {
                     /*Bundle bundle = new Bundle();
                     bundle.putString("mainID",mainID);
                     chatFragment.setArguments(bundle);*/
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout,chatFragment).commit();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout,chatFragment).commit();
                 }
                 return true;
             }
         });
     }
 
-    private void getWidget() {
+    /*private void getWidget() {
         chatFragment = new ChatFragment();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         searchButton = findViewById(R.id.main_search_btn);
-    }
+    }*/
 
 }

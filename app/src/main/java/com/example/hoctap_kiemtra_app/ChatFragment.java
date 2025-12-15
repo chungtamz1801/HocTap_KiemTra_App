@@ -1,6 +1,9 @@
 package com.example.hoctap_kiemtra_app;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -45,8 +48,9 @@ public class ChatFragment extends Fragment {
         Activity activity = getActivity();
         if(activity!=null)
         {
-            MyApplication app = (MyApplication) activity.getApplication();
-            FirebaseUtil.setUserID(app.getUserID());
+            SharedPreferences prefs = activity.getSharedPreferences("QUIZ_APP", MODE_PRIVATE);
+            String userID = prefs.getString("STUDENT_ID","");
+            FirebaseUtil.setUserID(userID);
         }
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
         recyclerView = view.findViewById(R.id.recyler_view);
