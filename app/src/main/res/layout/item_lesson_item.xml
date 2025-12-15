@@ -23,7 +23,6 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@android:drawable/ic_menu_info_details"
-            android:tint="#1976D2"
             android:contentDescription="Item Icon"
             android:padding="4dp"/>
 

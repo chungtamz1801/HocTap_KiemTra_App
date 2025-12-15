@@ -1,9 +1,24 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.HocTap_KiemTra_App" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.HocTap_KiemTra_App" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#0D47A1</item>
+        <item name="colorAccent">#FF9800</item>
+        <item name="android:statusBarColor">#0D47A1</item>
     </style>
 
-    <style name="Theme.HocTap_KiemTra_App" parent="Base.Theme.HocTap_KiemTra_App" />
+    <style name="Theme.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/gradient_background</item>
+        <item name="android:statusBarColor">#0D47A1</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <style name="Theme.Login" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#0D47A1</item>
+        <item name="colorAccent">#FF9800</item>
+        <item name="android:statusBarColor">#0D47A1</item>
+    </style>
+
 </resources>

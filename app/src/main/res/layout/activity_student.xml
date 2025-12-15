@@ -1,38 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E0F7FA">
+    <!-- Thống kê -->
+    <LinearLayout
+        android:id="@+id/layoutStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
 
-    <TextView
-        android:text="TRIẾT HỌC MÁC - LÊNIN"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#00695C"
-        android:layout_marginBottom="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Thao tác nhanh"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#424242"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/btnStartQuiz"
-        android:text="Vào thi ngay"
-        android:textSize="18sp"
-        android:padding="15dp"
-        android:backgroundTint="#009688"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnStartTest"
+            android:text="BẮT ĐẦU LÀM BÀI KIỂM TRA"
+            android:textSize="14sp"
+            android:backgroundTint="#009688"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+        <TextView
+            android:text="Thống kê"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#424242"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="8dp">
 
-    <Button
-        android:id="@+id/btnReviewResult"
-        android:text="Xem lại kết quả"
-        android:textSize="18sp"
-        android:padding="15dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#FF9800"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Bài học"
+                        android:textSize="14sp"
+                        android:textColor="#757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalExams"
+                        android:text="9"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="#1976D2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#E0E0E0"
+                    android:layout_marginHorizontal="16dp"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Đã hoàn thành"
+                        android:textSize="14sp"
+                        android:textColor="#757575"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvCompleted"
+                        android:text="4"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF9800"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- Nội dung chính -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="24dp">
+
+        <TextView
+            android:text="TRIẾT HỌC MÁC - LÊNIN"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#00695C"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnStartQuiz"
+            android:text="Vào thi ngay"
+            android:textSize="18sp"
+            android:padding="15dp"
+            android:backgroundTint="#009688"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnReviewResult"
+            android:text="Xem lại kết quả"
+            android:textSize="18sp"
+            android:padding="15dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FF9800"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </LinearLayout>

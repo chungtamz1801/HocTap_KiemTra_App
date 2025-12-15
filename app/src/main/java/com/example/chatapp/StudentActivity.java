@@ -1,50 +1,58 @@
 package com.example.chatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.example.hoctap_kiemtra_app.R;
+
 public class StudentActivity extends AppCompatActivity {
+
+    private LinearLayout layoutStats;
+    private TextView tvTotalExams, tvCompleted;
+    private Button btnStart, btnReview;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        Button btnStart = findViewById(R.id.btnStartQuiz);
+        db = FirebaseFirestore.getInstance();
 
-        Button btnReview = findViewById(R.id.btnReviewResult);
+        btnStart = findViewById(R.id.btnStartQuiz);
+        btnReview = findViewById(R.id.btnReviewResult);
+        layoutStats = findViewById(R.id.layoutStats);
+        tvTotalExams = findViewById(R.id.tvTotalExams);
+        tvCompleted = findViewById(R.id.tvCompleted);
 
-        // 1. NÚT START: Gọi MainActivity (Logic cũ: Tự lấy đề đầu tiên để thi)
+        // Load thống kê
+        loadStudentStatistics();
+
+        // Nút vào thi
         btnStart.setOnClickListener(v -> {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-            // Lấy exam nào đang active
             db.collection("exams")
                     .whereEqualTo("active", true)
                     .get()
                     .addOnSuccessListener(querySnapshot -> {
                         if (querySnapshot.isEmpty()) {
-                            // Không có exam active
-                            Toast.makeText(this, "Chưa có đề thi đang mở hoặc đã hết thời gian làm bài!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Chưa có đề thi đang mở!", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
-                        // Lấy exam đầu tiên đang active
                         DocumentSnapshot doc = querySnapshot.getDocuments().get(0);
                         String examId = doc.getId();
 
-                        // Mở activity làm bài
                         Intent intent = new Intent(StudentActivity.this, DoQuizActivity.class);
                         intent.putExtra("examId", examId);
                         startActivity(intent);
@@ -54,10 +62,7 @@ public class StudentActivity extends AppCompatActivity {
                     });
         });
 
-
-
-
-        // 3. NÚT REVIEW: Xem lại kết quả vừa thi
+        // Nút xem lại
         btnReview.setOnClickListener(v -> {
             if (QuestionDataHolder.getInstance().getListQuestions() == null) {
                 Toast.makeText(this, "Bạn chưa làm bài nào!", Toast.LENGTH_SHORT).show();
@@ -66,5 +71,48 @@ public class StudentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Cập nhật thống kê mỗi khi quay lại màn hình
+        loadStudentStatistics();
+    }
+
+    private void loadStudentStatistics() {
+        SharedPreferences prefs = getSharedPreferences("QUIZ_APP", MODE_PRIVATE);
+        String studentId = prefs.getString("STUDENT_ID", null);
+
+        if (studentId == null) {
+            layoutStats.setVisibility(View.GONE);
+            return;
+        }
+
+        // Đếm tổng số bài thi
+        db.collection("exams")
+                .get()
+                .addOnSuccessListener(examsSnapshot -> {
+                    int totalExams = examsSnapshot.size();
+                    tvTotalExams.setText(String.valueOf(totalExams));
+
+                    // Đếm số bài đã hoàn thành
+                    db.collection("student_score")
+                            .whereEqualTo("id", studentId)
+                            .get()
+                            .addOnSuccessListener(scoresSnapshot -> {
+                                int completedExams = scoresSnapshot.size();
+                                tvCompleted.setText(String.valueOf(completedExams));
+
+                                // Hiển thị thống kê
+                                layoutStats.setVisibility(View.VISIBLE);
+                            })
+                            .addOnFailureListener(e -> {
+                                layoutStats.setVisibility(View.GONE);
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    layoutStats.setVisibility(View.GONE);
+                });
     }
 }

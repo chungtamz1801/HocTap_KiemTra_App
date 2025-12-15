@@ -28,7 +28,7 @@ public class DoQuizActivity extends AppCompatActivity {
     RecyclerView rv;
     QuestionAdapter adapter;
     ArrayList<Question> questions;
-    TextView tvTimer, txtExam; // Khai báo txtExam
+    TextView tvTimer, txtExam;
     Button btnSubmit;
     CountDownTimer timer;
     FirebaseFirestore db;
@@ -43,11 +43,10 @@ public class DoQuizActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        // Ánh xạ View
         rv = findViewById(R.id.rvQuestions);
         tvTimer = findViewById(R.id.tvTimer);
         btnSubmit = findViewById(R.id.btnSubmit);
-        txtExam = findViewById(R.id.txtExam); // Đảm bảo ID này khớp với XML
+        txtExam = findViewById(R.id.txtExam);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,7 +54,6 @@ public class DoQuizActivity extends AppCompatActivity {
         adapter = new QuestionAdapter(questions);
         rv.setAdapter(adapter);
 
-        // 1. CHỈ NHẬN ID TỪ HOME GỬI SANG (Không tự query active nữa)
         String examId = getIntent().getStringExtra("examId");
 
         if (examId == null || examId.isEmpty()) {
@@ -64,9 +62,7 @@ public class DoQuizActivity extends AppCompatActivity {
             return;
         }
 
-        // 2. Load dữ liệu dựa trên ID đó
         loadExamData(examId);
-
         btnSubmit.setOnClickListener(v -> submitQuiz());
     }
 
@@ -77,23 +73,20 @@ public class DoQuizActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
-                        // --- CẬP NHẬT TÊN BỘ ĐỀ ---
                         String name = doc.getString("name");
                         if (name != null) {
-                            txtExam.setText(name); // Gán tên vào TextView
+                            txtExam.setText(name);
                             Log.d("DEBUG_APP", "Đã set tên đề thi: " + name);
                         } else {
                             txtExam.setText("Đề thi không có tên");
                         }
 
-                        // --- CẬP NHẬT THỜI GIAN ---
                         Long timeLimit = doc.getLong("time");
                         if (timeLimit != null && timeLimit > 0) {
                             totalTime = timeLimit * 60 * 1000;
                         }
                         startTimer(totalTime);
 
-                        // --- LOAD CÂU HỎI ---
                         List<String> questionIds = (List<String>) doc.get("questionIds");
                         if (questionIds != null && !questionIds.isEmpty()) {
                             fetchQuestionsDetails(questionIds);
@@ -149,7 +142,7 @@ public class DoQuizActivity extends AppCompatActivity {
     private void submitQuiz() {
         if(timer != null) timer.cancel();
 
-        // Lưu vào Holder để xem lại ngay lập tức (Logic cũ của bạn - Giữ nguyên)
+        // Lưu vào Holder để xem lại
         QuestionDataHolder.getInstance().setListQuestions(questions);
 
         int correctCount = 0;
@@ -162,7 +155,6 @@ public class DoQuizActivity extends AppCompatActivity {
             }
         }
 
-        // Tính toán thời gian và điểm
         long timeTakenMillis = totalTime - timeRemaining;
         long min = (timeTakenMillis / 1000) / 60;
         long sec = (timeTakenMillis / 1000) % 60;
@@ -173,57 +165,49 @@ public class DoQuizActivity extends AppCompatActivity {
             score = (double) correctCount / questions.size() * 10;
         }
 
-        // --- BƯỚC MỚI: LƯU LÊN FIREBASE ---
-        // Lấy ID sinh viên từ SharedPreferences (đã lưu lúc Login)
+        // Lấy thông tin sinh viên
         SharedPreferences prefs = getSharedPreferences("QUIZ_APP", MODE_PRIVATE);
         String studentId = prefs.getString("STUDENT_ID", "UnknownID");
         String studentName = prefs.getString("FULLNAME", "UnknownName");
-
-        // Lấy ExamID từ Intent ban đầu
         String examId = getIntent().getStringExtra("examId");
 
-        // Gọi hàm lưu
+        // Lưu kết quả lên Firebase
         saveResultToFirestore(studentId, studentName, examId, score, timeTakenStr, questions);
 
-        // Chuyển màn hình
-        Intent intent = new Intent(DoQuizActivity.this, ResultActivity.class);
-        intent.putExtra("TOTAL", questions.size());
-        intent.putExtra("CORRECT", correctCount);
-        intent.putExtra("WRONG", wrongCount);
-        intent.putExtra("SCORE", score);
-        intent.putExtra("TIME_TAKEN", timeTakenStr);
+        // ===== THAY ĐỔI: Quay về StudentActivity thay vì ResultActivity =====
+        Toast.makeText(this, "Đã nộp bài! Điểm: " + String.format("%.1f", score), Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(DoQuizActivity.this, StudentActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
-    // --- HÀM LƯU KẾT QUẢ ---
+
     private void saveResultToFirestore(String id, String name, String examId, double score, String timeTaken, ArrayList<Question> listQ) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 1. Chuẩn bị danh sách câu trả lời chi tiết
         List<Map<String, String>> detailAnswers = new ArrayList<>();
         for (Question q : listQ) {
             Map<String, String> item = new HashMap<>();
-            item.put("questionId", q.getId()); // ID câu hỏi (cần thiết để truy vết)
-            item.put("selected", q.getUserAnswer() != null ? q.getUserAnswer() : ""); // Đáp án SV chọn
-            item.put("correct", q.getCorrectAnswer()); // Đáp án đúng (lưu luôn để tiện so sánh sau này)
+            item.put("questionId", q.getId());
+            item.put("selected", q.getUserAnswer() != null ? q.getUserAnswer() : "");
+            item.put("correct", q.getCorrectAnswer());
             detailAnswers.add(item);
         }
 
-        // 2. Đóng gói dữ liệu tổng
         Map<String, Object> resultData = new HashMap<>();
         resultData.put("id", id);
-        resultData.put("name",name);
+        resultData.put("name", name);
         resultData.put("examId", examId != null ? examId : "unknown_exam");
         resultData.put("score", score);
         resultData.put("timeTaken", timeTaken);
-        resultData.put("timestamp", new Date()); // Thời điểm nộp bài
-        resultData.put("details", detailAnswers); // Lưu chi tiết bài làm
+        resultData.put("timestamp", new Date());
+        resultData.put("details", detailAnswers);
 
-        // 3. Đẩy lên bảng "student_score"
         db.collection("student_score")
                 .add(resultData)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(this, "Đã lưu kết quả thi!", Toast.LENGTH_SHORT).show();
+                    Log.d("DEBUG_APP", "Đã lưu kết quả thi!");
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Lỗi lưu điểm: " + e.getMessage(), Toast.LENGTH_SHORT).show();
