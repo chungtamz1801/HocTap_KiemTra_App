@@ -1,9 +1,11 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.android.application) // This already applies the android plugin
+    id("com.google.gms.google-services")    // Keep this for Firebase
 }
 
 android {
+    namespace = "com.example.chatapp"
+    compileSdk = 35 // I recommend changing 36 to 35 for stability, as 36 is preview
     namespace = "com.example.hoctap_kiemtra_app"
     compileSdk = 36
 
@@ -42,5 +44,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    // --- THÊM DÒNG NÀY ĐỂ SỬA LỖI ---
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
 }

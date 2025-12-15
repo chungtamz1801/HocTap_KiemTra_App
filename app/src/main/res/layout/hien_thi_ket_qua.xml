@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <!-- Header -->
+    <TextView
+        android:text="XEM LẠI KẾT QUẢ CHI TIẾT"
+        android:background="#FF9800"
+        android:textColor="#FFF"
+        android:textSize="18sp"
+        android:padding="15dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Tên sinh viên -->
+    <TextView
+        android:id="@+id/txtStudentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sinh viên: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Tên đề thi -->
+    <TextView
+        android:id="@+id/txtExamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đề thi: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
+
+
+    <!-- Điểm sinh viên -->
+    <TextView
+        android:id="@+id/txtScore"
+        android:text="Điểm: 8.5"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- RecyclerView danh sách câu hỏi -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Nút về trang chủ -->
+    <Button
+        android:id="@+id/btnBackHome"
+        android:text="Về trang chủ"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

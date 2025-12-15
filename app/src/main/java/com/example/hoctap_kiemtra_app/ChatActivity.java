@@ -39,7 +39,7 @@ public class ChatActivity extends AppCompatActivity {
     TextView chatroom_name;
     RecyclerView chat_recycler_view;
     EditText chat_message_input;
-    ImageButton message_send_btn;
+    ImageButton message_send_btn,back_btn;
     ChatRecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +107,11 @@ public class ChatActivity extends AppCompatActivity {
         chat_recycler_view = findViewById(R.id.chat_recycler_view);
         chat_message_input = findViewById(R.id.chat_message_input);
         message_send_btn = findViewById(R.id.message_send_btn);
+        back_btn = findViewById(R.id.back_btn);
     }
     private void setEvent()
     {
         message_send_btn.setOnClickListener(v->sendMessage());
+        back_btn.setOnClickListener(v->getOnBackPressedDispatcher().onBackPressed());
     }
 }

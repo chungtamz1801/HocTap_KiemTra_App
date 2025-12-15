@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="12dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvExamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên bộ đề"
+        android:textSize="18sp"
+        android:padding="6dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnEditExam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sửa thông tin"/>
+
+        <Button
+            android:id="@+id/btnAddExistingQuestion"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Thêm câu có sẵn"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCreateQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tạo câu hỏi mới thêm vào đề"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh sách câu hỏi:"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

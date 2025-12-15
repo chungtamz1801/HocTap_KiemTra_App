@@ -16,23 +16,14 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btnStartQuiz"
-        android:text="Vào thi ngay"
-        android:textSize="18sp"
-        android:padding="15dp"
-        android:backgroundTint="#009688"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"/>
-
-
-
-    <Button
-        android:id="@+id/btnReviewResult"
-        android:text="Xem lại kết quả"
+        android:id="@+id/btnManage"
+        android:text="Quản lý đề thi"
         android:textSize="18sp"
         android:padding="15dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#FF9800"
+        android:backgroundTint="#3F51B5"
         android:layout_width="220dp"
         android:layout_height="wrap_content"/>
+
+
 </LinearLayout>
