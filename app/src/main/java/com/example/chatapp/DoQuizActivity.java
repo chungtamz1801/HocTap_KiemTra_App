@@ -142,19 +142,18 @@ public class DoQuizActivity extends AppCompatActivity {
     private void submitQuiz() {
         if(timer != null) timer.cancel();
 
-        // Lưu vào Holder để xem lại
+        // 1. Lưu danh sách câu hỏi vào Holder để xem lại
         QuestionDataHolder.getInstance().setListQuestions(questions);
 
+        // 2. Tính điểm
         int correctCount = 0;
-        int wrongCount = 0;
         for (Question q : questions) {
             if (q.getUserAnswer() != null && q.getUserAnswer().equals(q.getCorrectAnswer())) {
                 correctCount++;
-            } else {
-                wrongCount++;
             }
         }
 
+        // 3. Tính thời gian
         long timeTakenMillis = totalTime - timeRemaining;
         long min = (timeTakenMillis / 1000) / 60;
         long sec = (timeTakenMillis / 1000) % 60;
@@ -165,19 +164,24 @@ public class DoQuizActivity extends AppCompatActivity {
             score = (double) correctCount / questions.size() * 10;
         }
 
-        // Lấy thông tin sinh viên
+        // 4. Lưu lên Firebase
         SharedPreferences prefs = getSharedPreferences("QUIZ_APP", MODE_PRIVATE);
         String studentId = prefs.getString("STUDENT_ID", "UnknownID");
         String studentName = prefs.getString("FULLNAME", "UnknownName");
         String examId = getIntent().getStringExtra("examId");
 
-        // Lưu kết quả lên Firebase
         saveResultToFirestore(studentId, studentName, examId, score, timeTakenStr, questions);
+        Toast.makeText(this, "Đã nộp bài!", Toast.LENGTH_SHORT).show();
 
-        // ===== THAY ĐỔI: Quay về StudentActivity thay vì ResultActivity =====
-        Toast.makeText(this, "Đã nộp bài! Điểm: " + String.format("%.1f", score), Toast.LENGTH_LONG).show();
+        // 5. Chuyển sang ResultActivity (Gửi kèm dữ liệu)
+        Intent intent = new Intent(DoQuizActivity.this, ResultActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putDouble("SCORE", score);
+        bundle.putInt("CORRECT", correctCount);
+        bundle.putInt("TOTAL", questions.size());
+        bundle.putString("TIME", timeTakenStr); // Key là "TIME"
 
-        Intent intent = new Intent(DoQuizActivity.this, StudentActivity.class);
+        intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
