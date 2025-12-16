@@ -8,13 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapp.model.Exam;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExamListActivity extends AppCompatActivity {
+public class ExamListActivityScore extends AppCompatActivity {
 
     RecyclerView rv;
     FirebaseFirestore db;
@@ -25,7 +26,7 @@ public class ExamListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_list_score);
 
-        rv = findViewById(R.id.rvExamList);
+        rv = findViewById(R.id.rvExam);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         db = FirebaseFirestore.getInstance();
@@ -34,20 +35,25 @@ public class ExamListActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(query -> {
                     examList.clear();
+
                     for (DocumentSnapshot d : query) {
                         Exam e = d.toObject(Exam.class);
-                        e.examId = d.getId(); // Lấy document ID làm examId
+                        if (e == null) continue;
+
+                        e.setId(d.getId());
                         examList.add(e);
                     }
+
                     rv.setAdapter(new ExamAdapterScore(examList, exam -> {
-                        Log.d("DEBUG", "Click examId: " + exam.examId);
-                        Intent i = new Intent(ExamListActivity.this, StudentScoreActivity.class);
-                        i.putExtra("examId", exam.examId); // Truyền đúng examId
-                        startActivity(i);
+                        Intent intent = new Intent(
+                                ExamListActivityScore.this,
+                                StudentScoreActivity.class
+                        );
+                        intent.putExtra("examId", exam.getId());
+                        startActivity(intent);
                     }));
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("DEBUG", "Lỗi khi load exams: " + e.getMessage());
                 });
+
     }
+
 }

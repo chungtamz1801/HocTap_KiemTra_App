@@ -187,10 +187,12 @@
         </activity>
 
         <!-- Các màn hình khác -->
-        <activity android:name=".StudentHomeActivity" android:exported="false"/>
-        <activity android:name=".LecturerHomeActivity" android:exported="false"/>
+        <!-- Danh sách điểm sinh viên -> điểm thi (sinh viên) -->
         <activity android:name=".StudentScoreActivity" android:exported="false"/>
-
+        <!-- Danh sách đề + xem điểm (giảng viên) -->
+        <activity
+            android:name=".ExamListActivityScore"
+            android:exported="false" />
     </application>
 
 </manifest>
