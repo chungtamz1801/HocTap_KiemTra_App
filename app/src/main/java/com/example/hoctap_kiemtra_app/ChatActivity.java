@@ -53,7 +53,14 @@ public class ChatActivity extends AppCompatActivity {
             return insets;
         });
         SharedPreferences prefs = getSharedPreferences("QUIZ_APP", MODE_PRIVATE);
-        userID = prefs.getString("STUDENT_ID","");
+        String userType = prefs.getString("USER_TYPE","");
+        if(userType.equals("LECTURER"))
+        {
+            userID = prefs.getString("LECTURER_ID","");
+        }
+        else if(userType.equals("STUDENT")){
+            userID = prefs.getString("STUDENT_ID","");
+        }
         userName = prefs.getString("FULLNAME","");
         getWidget();
         bindDataFromIntent();

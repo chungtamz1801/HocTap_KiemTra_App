@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
         android:name=".application.MyApplication"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +14,9 @@
         android:theme="@style/Theme.HocTap_KiemTra_App"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ChatroomActivity"
+            android:exported="false" />
         <!-- SPLASH SCREEN - -->
         <activity
             android:name=".ChatActivity"
@@ -26,170 +28,146 @@
             android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- LOGIN SCREEN  -->
+        </activity> <!-- LOGIN SCREEN -->
         <activity
             android:name="com.example.chatapp.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- MAIN ACTIVITY WITH BOTTOM NAVIGATION  -->
+            android:windowSoftInputMode="adjustResize" /> <!-- MAIN ACTIVITY WITH BOTTOM NAVIGATION -->
         <activity
-            android:name="com.example.hoctap_kiemtra_app.MainActivityNew"
+            android:name=".MainActivityNew"
             android:exported="false"
-            android:label="Học tập &amp; Kiểm tra" />
-
-        <!-- OLD MAIN ACTIVITY  -->
+            android:label="Học tập &amp; Kiểm tra" /> <!-- OLD MAIN ACTIVITY -->
         <activity
-            android:name="com.example.hoctap_kiemtra_app.MainActivity"
+            android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
-
-        <!-- LECTURER & STUDENT ACTIVITIES -->
+            android:screenOrientation="portrait" /> <!-- LECTURER & STUDENT ACTIVITIES -->
         <activity
             android:name="com.example.chatapp.LectureActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Quản lý - Giảng viên" />
-
+            android:label="Quản lý - Giảng viên"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.chatapp.StudentActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Sinh viên" />
-
-        <!-- EXAM MANAGEMENT ACTIVITIES -->
+            android:label="Sinh viên"
+            android:screenOrientation="portrait" /> <!-- EXAM MANAGEMENT ACTIVITIES -->
         <activity
             android:name="com.example.chatapp.ExamListActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Danh sách đề thi"
-            android:parentActivityName="com.example.chatapp.LectureActivity">
+            android:parentActivityName="com.example.chatapp.LectureActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.LectureActivity" />
         </activity>
-
         <activity
             android:name="com.example.chatapp.CreateExamActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Tạo đề thi mới"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName="com.example.chatapp.ExamListActivity">
+            android:parentActivityName="com.example.chatapp.ExamListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.ExamListActivity" />
         </activity>
-
         <activity
             android:name="com.example.chatapp.EditExamActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Chỉnh sửa đề thi"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName="com.example.chatapp.ExamListActivity">
+            android:parentActivityName="com.example.chatapp.ExamListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.ExamListActivity" />
         </activity>
-
         <activity
             android:name="com.example.chatapp.ExamDetailActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Chi tiết đề thi"
-            android:parentActivityName="com.example.chatapp.ExamListActivity">
+            android:parentActivityName="com.example.chatapp.ExamListActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.ExamListActivity" />
-        </activity>
-
-        <!-- QUESTION MANAGEMENT ACTIVITIES -->
+        </activity> <!-- QUESTION MANAGEMENT ACTIVITIES -->
         <activity
             android:name="com.example.chatapp.QuestionManageActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Quản lý câu hỏi"
-            android:parentActivityName="com.example.chatapp.ExamListActivity">
+            android:parentActivityName="com.example.chatapp.ExamListActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.ExamListActivity" />
         </activity>
-
         <activity
             android:name="com.example.chatapp.QuestionCreateActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Tạo câu hỏi mới"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName="com.example.chatapp.QuestionManageActivity">
+            android:parentActivityName="com.example.chatapp.QuestionManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.QuestionManageActivity" />
         </activity>
-
         <activity
             android:name="com.example.chatapp.QuestionEditActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Chỉnh sửa câu hỏi"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName="com.example.chatapp.QuestionManageActivity">
+            android:parentActivityName="com.example.chatapp.QuestionManageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.chatapp.QuestionManageActivity" />
-        </activity>
-
-        <!-- QUIZ TAKING ACTIVITIES -->
+        </activity> <!-- QUIZ TAKING ACTIVITIES -->
         <activity
             android:name="com.example.chatapp.DoQuizActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Làm bài thi"
-            android:parentActivityName="com.example.hoctap_kiemtra_app.MainActivityNew">
+            android:parentActivityName=".MainActivityNew"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hoctap_kiemtra_app.MainActivityNew" />
         </activity>
-
         <activity
             android:name="com.example.chatapp.ResultActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Kết quả" />
-
+            android:label="Kết quả"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.chatapp.ReviewActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Xem lại bài làm"
-            android:parentActivityName="com.example.hoctap_kiemtra_app.MainActivityNew">
+            android:parentActivityName=".MainActivityNew"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hoctap_kiemtra_app.MainActivityNew" />
-        </activity>
-
-        <!-- LESSON ACTIVITIES -->
+        </activity> <!-- LESSON ACTIVITIES -->
         <activity
-            android:name="com.example.hoctap_kiemtra_app.LessonDetailActivity"
+            android:name=".LessonDetailActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Chi tiết bài học"
-            android:parentActivityName="com.example.hoctap_kiemtra_app.MainActivityNew">
+            android:parentActivityName=".MainActivityNew"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hoctap_kiemtra_app.MainActivityNew" />
-        </activity>
-
-        <!-- Các màn hình khác -->
+        </activity> <!-- Các màn hình khác -->
         <!-- Danh sách điểm sinh viên -> điểm thi (sinh viên) -->
-        <activity android:name=".StudentScoreActivity" android:exported="false"/>
-        <!-- Danh sách đề + xem điểm (giảng viên) -->
+        <activity
+            android:name=".StudentScoreActivity"
+            android:exported="false" /> <!-- Danh sách đề + xem điểm (giảng viên) -->
         <activity
             android:name=".ExamListActivityScore"
             android:exported="false" />

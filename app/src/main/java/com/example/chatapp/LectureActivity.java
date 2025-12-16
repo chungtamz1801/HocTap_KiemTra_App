@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.hoctap_kiemtra_app.ChatroomActivity;
 import com.example.hoctap_kiemtra_app.ExamListActivityScore;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +26,7 @@ public class LectureActivity extends AppCompatActivity {
 
         Button btnManage = findViewById(R.id.btnManage); // Nút mới
         Button btnScore = findViewById(R.id.btnScore); // Nút mới
+        Button btnChat = findViewById(R.id.chatroom_btn); // Nút mới
 
 
         // 2. NÚT MANAGE: Gọi ExamListActivity (Code đồng nghiệp: Để thêm/sửa/xóa đề)
@@ -34,6 +36,10 @@ public class LectureActivity extends AppCompatActivity {
         });
         btnScore.setOnClickListener(v -> {
             Intent intent = new Intent(LectureActivity.this, ExamListActivityScore.class);
+            startActivity(intent);
+        });
+        btnChat.setOnClickListener(v -> {
+            Intent intent = new Intent(LectureActivity.this, ChatroomActivity.class);
             startActivity(intent);
         });
 
